@@ -59,17 +59,31 @@ print(colorText(verinfo))
 i=1
 while i == 1:
     try:
-        what = eval(input(colorText('''No Command Line Arguements found, fallback to procedural mode  
-          
-[[green]][1] Wallet Search
+        try:
+            wall = str(sys.argv[2])
+            type = str(sys.argv[3])
+            mode = sys.argv[1]
+
+            print(mode)
+            if mode == 1:
+                what = 1
+            if mode == 2:
+                what = 2
+
+        except:
+            print("                                  No Command Line Arguements found, fallback to procedural mode")
+            what = eval(input(colorText(
+'''[[green]][1] Wallet Search
 [2] Transaction Info
 [3] About
 [4] Help[[white]]
 [[blue]]Input : [[white]]''')))
-        if type(what) == int:
-            i = 2
-        else:
-            raise TypeError
+
+        if 'what' in locals():
+            if type(what) == int:
+                i = 2
+            else:
+                raise TypeError
     except TypeError:
         print("Invalid Input")
         os.system('cls')
@@ -77,10 +91,15 @@ while i == 1:
 #Transaction Info Block
 if what == 1:
     Clear()
-    wallet = input(colorText("[[green]]Wallet & Type(Example: LKnF9CELAZf2LztVFu1Rq5TmwMJUfrX2uh,litecoin):[[green]][[cyan]] "))
-    infomer = wallet.split(',')
-    wall = infomer[0]
-    type = infomer[1]
+    if('wall' in locals()):
+        novariable = 2
+    else:
+        wallet = input(colorText(
+            "[[green]]Wallet & Type(Example: LKnF9CELAZf2LztVFu1Rq5TmwMJUfrX2uh,litecoin):[[green]][[cyan]] "))
+        infomer = wallet.split(',')
+        wall = infomer[0]
+        type = infomer[1]
+
     endpoint = f"https://api.blockchair.com/{type}/dashboards/address/{wall}"
 
     try:
@@ -145,8 +164,33 @@ if what == 2:
     print(colorText("[[white]] Please wait..."))
     Clear()
     '''Define vars and print'''
+    raw_time = json_extract(jsonr,'time')
+    p_time = raw_time[0]#raw_time.replace('[', '').replace(']', '').replace('\'', '')
+    raw_input = str(json_extract(jsonr,'input_total_usd'))
+    p_input = raw_input.replace('[', '').replace(']', '') + " USD"
+    raw_output = str(json_extract(jsonr,'output_total_usd'))
+    p_output = raw_output.replace('[', '').replace(']', '') + " USD"
+    raw_fee = str(json_extract(jsonr,'fee_usd'))
+    p_fee = raw_fee.replace('[', '').replace(']', '') + " USD"
+    raw_recipient = json_extract(jsonr,'recipient')
+    p_recipient = raw_recipient[0]#raw_recipient.replace('[', '').replace(']', '')
+    p_sender = raw_recipient[2]
+    '''Variable Defination Ends, Prepare for final output'''
+    infologic = \
+f'''\t
+    [[blue]]Date & Time  : [[cyan]]{p_time}                                                     
+    [[blue]]Input Amount : [[cyan]]{p_input}
+    [[blue]]Ouput Amount : [[cyan]]{p_output}                                 
+    [[blue]]Network Fees : [[cyan]]{p_fee}
+    [[blue]]Recipient    : [[cyan]]{p_recipient}
+    [[blue]]Sender       : [[cyan]]{p_sender}[[white]]                                                     
+'''
+    print(colorText(infologic))
+
 if what == 3:
-    print("made by Port007")
+    Clear()
+    infotext = "                                    [[blue]]Program written by [[yellow]]devporter007[[blue]], Licensed under [[yellow]]GPL v3[[blue]].[[white]]"
+    print(colorText(infotext))
 if what == 4:
     Clear()
     u_text= \
