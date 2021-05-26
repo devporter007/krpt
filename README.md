@@ -1,4 +1,4 @@
-# krpt
+# KRPT
 A quick btc,bch,doge,ltc,dash and zcash blockchain explorer based on blockchair API.
 
 
