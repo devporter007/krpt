@@ -173,8 +173,8 @@ if what == 2:
     raw_fee = str(json_extract(jsonr,'fee_usd'))
     p_fee = raw_fee.replace('[', '').replace(']', '') + " USD"
     raw_recipient = json_extract(jsonr,'recipient')
-    p_recipient = raw_recipient[0]#raw_recipient.replace('[', '').replace(']', '')
-    p_sender = raw_recipient[2]
+    p_recipient = raw_recipient[2]#raw_recipient.replace('[', '').replace(']', '')
+    p_sender = raw_recipient[0]
     '''Variable Defination Ends, Prepare for final output'''
     infologic = \
 f'''\t
