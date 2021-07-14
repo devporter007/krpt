@@ -1,7 +1,9 @@
 # KRPT
 A quick btc,bch,doge,ltc,dash and zcash blockchain explorer based on blockchair API.
 
-![alt text](https://i.ibb.co/mGgQhZz/py-QLn-XJl-Tn-An.png)
+<p align="center" width="100%">
+    <img width="100%" src="https://i.ibb.co/mGgQhZz/py-QLn-XJl-Tn-An.png"> 
+</p>
 
 <h2>Usage</h2>
 <UL>
